@@ -15,13 +15,14 @@ def create_new_csv():
     jobListings = r.html.find('a.job-row__inner')
     for jobListing in jobListings:
         jobList = jobListing.find('a.job-row__inner', first=True).text
-        #print() # Adding in an end line in the worst way possible for debugging.
+        #print(jobList) # Adding in an end line in the worst way possible for debugging.
         jobList = jobList.replace(' ', '_')
         jobList = jobList.replace(',', '')
         jobList = jobList.replace("\n",',')
         
         #print(jobList) #Debug print statement
-        res = list(map(str.strip, jobList.split(',')))# What was I even smoking this day, splitting a string on comma then stripping it into a map and storing into a list
+        res = list(map(str.strip, jobList.split(',')))# Storing into a map strips all leading and trailing whitespaces.
+        #print(res)
         csv_Input.writerow(res) # Write list to CSV. List should not go over len(3) but we just jam it in without checking (Whoops)
         
     new_csv_file.close() #Close CSV
@@ -37,6 +38,7 @@ def return_added_jobs():
         if line not in fileone:
             #line.replace('_', ' ')
             diffJobs.append(line)
+            #print(diffJobs)
     return diffJobs
                
 def return_removed_jobs():

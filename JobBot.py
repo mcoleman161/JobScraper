@@ -40,12 +40,18 @@ async def send_jobs(user):
         await user.send(f'The new jobs since the last run are as followed: ')
         for added_job in added_jobs:
             # We must break the csv format back down to user friendly text
-            split_job = added_job.split(',')
+            split_job = added_job.split(',') #Split CSV format to list
+            for i in range(len(split_job)): # Remove underscores from list elements because discord processes _TEXT_ as ital
+                split_job[i] = split_job[i].replace('_',' ')
             await user.send(f' JOB TITLE:  {split_job[0]}\nJOB CRAFT:  {split_job[1]}\nPRODUCT TEAM:  {split_job[2]}\nOFFICE:  {split_job[3]}\n-------')
-    elif removed_jobs != []:
+    
+    #Repeat above code for removed jobs
+    elif removed_jobs != []: 
         user.send(f'The jobs removed since the last run are as followed: ')
         for removed_job in removed_jobs:
             split_removed_job = removed_job.split(',')
+            for i in range(len(split_removed_job)): 
+                split_removed_job[i] = split_removed_job[i].replace('_',' ')
             await user.send(f' JOB TITLE:  {split_removed_job[0]}\nJOB CRAFT:  {split_removed_job[1]}\nPRODUCT TEAM:  {split_removed_job[2]}\nOFFICE:  {split_removed_job[3]}\n-------')
     else:
         print("No changes were found this run")
