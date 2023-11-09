@@ -1,9 +1,6 @@
 from requests_html import HTMLSession
 import csv
 import os #needed for file rename
-import discord
-import asyncio
-import subprocess
 
 def create_new_csv():
     session = HTMLSession()
