@@ -2,9 +2,12 @@ import discord
 import asyncio
 import subprocess
 import scraper
+import os
+from dotenv import load_dotenv
 
 # Replace 'your_token_here' with your actual bot token
-TOKEN = 'MTE3MjAzMjg0NjY0MzM0MzQ2MQ.Gc1XDy.vg_bAvB6P0b6kmE93IHVtpo-txpnrjPrb4RumE'
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 client = discord.Client(intents=discord.Intents.default())
 client.message_content = True
