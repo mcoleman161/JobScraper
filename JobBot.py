@@ -38,19 +38,11 @@ async def on_message(message):
         for added_job in addedJobs:
             # We must break the csv format back down to user friendly text
             split_job = added_job.split(',')
-            await message.channel.send(f' JOB TITLE:  {split_job[0]}')
-            await message.channel.send(f' JOB CRAFT:  {split_job[1]}')
-            await message.channel.send(f' PRODUCT TEAM:  {split_job[2]}')
-            await message.channel.send(f' OFFICE:  {split_job[3]}')
-            await message.channel.send("----")
+            await message.channel.send(f' JOB TITLE:  {split_job[0]}\nJOB CRAFT:  {split_job[1]}\nPRODUCT TEAM:  {split_job[2]}\nOFFICE:  {split_job[3]}\n-------')
 
         await message.channel.send(f'The jobs removed since the last run are as followed: ')
         for removed_job in removedJobs:
             split_removed_job = removed_job.split(',')
-            await message.channel.send(f' JOB TITLE:  {split_removed_job[0]}')
-            await message.channel.send(f' JOB CRAFT:  {split_removed_job[1]}')
-            await message.channel.send(f' PRODUCT TEAM:  {split_removed_job[2]}')
-            await message.channel.send(f' OFFICE:  {split_removed_job[3]}')
-            await message.channel.send('-----')
+            await message.channel.send(f' JOB TITLE:  {split_removed_job[0]}\nJOB CRAFT:  {split_removed_job[1]}\nPRODUCT TEAM:  {split_removed_job[2]}\nOFFICE:  {split_removed_job[3]}\n-------')
         scraper.cleanup_csvs()
 client.run(TOKEN)
